@@ -1,0 +1,16 @@
+[
+  {
+    "id": 2,
+    "title": "Boss",
+    "description": "Descripción del Boss",
+    "code": "P001",
+    "price": 100,
+    "status": true,
+    "stock": 10,
+    "category": "Categoría A",
+    "thumbnails": [
+      "ruta1.jpg",
+      "ruta2.jpg"
+    ]
+  }
+]

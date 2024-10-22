@@ -1,0 +1,94 @@
+<h1>Agregar Producto en Tiempo Real.</h1>
+
+<form id="addProductForm">
+  <div>
+    <label for="title">Título:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="Título del producto"
+      required
+    />
+  </div>
+  <div>
+    <label for="description">Descripción:</label>
+    <input
+      type="text"
+      id="description"
+      name="description"
+      placeholder="Descripción del producto"
+      required
+    />
+  </div>
+  <div>
+    <label for="code">Código:</label>
+    <input
+      type="text"
+      id="code"
+      name="code"
+      placeholder="Código del producto"
+      required
+    />
+  </div>
+  <div>
+    <label for="price">Precio:</label>
+    <input
+      type="number"
+      id="price"
+      name="price"
+      placeholder="Precio del producto"
+      required
+    />
+  </div>
+  <div>
+    <label for="stock">Stock:</label>
+    <input
+      type="number"
+      id="stock"
+      name="stock"
+      placeholder="Cantidad disponible"
+      required
+    />
+  </div>
+  <div>
+    <label for="category">Categoría:</label>
+    <input
+      type="text"
+      id="category"
+      name="category"
+      placeholder="Categoría del producto"
+      required
+    />
+  </div>
+  <div>
+    <label for="thumbnails">Thumbnails (URLs separadas por comas):</label>
+    <input
+      type="text"
+      id="thumbnails"
+      name="thumbnails"
+      placeholder="URL de imágenes, separadas por comas."
+    />
+  </div>
+  <button type="submit">Agregar Producto</button>
+</form>
+
+<script>
+  document.getElementById('addProductForm').addEventListener('submit', function
+  (e) { e.preventDefault(); const productData = { title:
+  document.getElementById('title').value, description:
+  document.getElementById('description').value, code:
+  document.getElementById('code').value, price:
+  document.getElementById('price').value, stock:
+  document.getElementById('stock').value, category:
+  document.getElementById('category').value, thumbnails:
+  document.getElementById('thumbnails').value.split(',') };
+  fetch('/api/products', { method: 'POST', headers: { 'Content-Type':
+  'application/json' }, body: JSON.stringify(productData) }) .then(response =>
+  response.json()) .then(data => { if (data.status === 'success') {
+  alert('Producto agregado exitosamente!');
+  document.getElementById('addProductForm').reset(); } else { alert('Error al
+  agregar producto: ' + data.message); } }) .catch(error => {
+  console.error('Error:', error); alert('Hubo un error al agregar el
+  producto.'); }); });
+</script>
